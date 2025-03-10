@@ -1,55 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="48sp"
-        android:id="@+id/action_bar_spinner"
-        android:layout_margin="16dp"
-        />
-    <com.google.android.material.imageview.ShapeableImageView
-        android:layout_width="200sp"
-        android:layout_height="200sp"
-        android:id="@+id/imageView"
-        app:shapeAppearanceOverlay= "@style/roundedImage"
-        android:src="@drawable/test"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="150sp"
-        android:scaleType="centerCrop"/>
+    tools:context=".MainActivity2"
+    >
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="300sp"
-        android:layout_height="200sp"
-        android:layout_alignBottom="@id/imageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="-220dp"
-        android:text="Не важно кто ты нахуй, важно что ты нахуй.." />
-
-    <ImageView
-        android:id="@+id/arrow_right"
-        android:layout_width="36sp"
-        android:layout_height="28sp"
-        android:layout_alignBottom="@id/textView"
-        android:layout_alignEnd="@id/textView"
-        android:layout_marginBottom="-37dp"
-        android:src="@drawable/arrow_right" />
-    <ImageView
-        android:id="@+id/arrow_left"
-        android:layout_width="36sp"
-        android:layout_height="28sp"
-        android:layout_alignBottom="@id/textView"
-        android:layout_alignStart="@id/textView"
-        android:layout_marginBottom="-37dp"
-        android:src="@drawable/arrow_left" />
-
-
-
-
-
+    <Button
+        android:id="@+id/button"
+        android:layout_width="178dp"
+        android:layout_height="102dp"
+        android:text="Button"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="467dp" />
 </RelativeLayout>
