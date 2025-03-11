@@ -19,31 +19,55 @@
         app:shapeAppearanceOverlay= "@style/roundedImage"
         android:src="@drawable/test"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150sp"
+        android:layout_marginTop="100sp"
         android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/authorNameView"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_alignBottom="@id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-50dp"
+        android:text="Автор"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="300sp"
         android:layout_height="200sp"
-        android:layout_alignBottom="@id/imageView"
+        android:layout_alignBottom="@id/authorNameView"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="-220dp"
+        android:layout_marginBottom="-200dp"
         android:text="Не важно кто ты нахуй, важно что ты нахуй.." />
+
+    <TextView
+        android:id="@+id/quoteNumView"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@id/textView"
+        android:layout_marginBottom="-40dp"
+        android:layout_alignEnd="@id/textView"
+        android:text="Номер"
+        android:textAlignment="center"
+        />
 
     <ImageView
         android:id="@+id/arrow_right"
         android:layout_width="36sp"
         android:layout_height="28sp"
-        android:layout_alignBottom="@id/textView"
+        android:layout_alignBottom="@id/quoteNumView"
         android:layout_alignEnd="@id/textView"
         android:layout_marginBottom="-37dp"
-        android:src="@drawable/arrow_right" />
+        android:src="@drawable/arrow_right"
+        />
     <ImageView
         android:id="@+id/arrow_left"
         android:layout_width="36sp"
         android:layout_height="28sp"
-        android:layout_alignBottom="@id/textView"
+        android:layout_alignBottom="@id/quoteNumView"
         android:layout_alignStart="@id/textView"
         android:layout_marginBottom="-37dp"
         android:src="@drawable/arrow_left" />
