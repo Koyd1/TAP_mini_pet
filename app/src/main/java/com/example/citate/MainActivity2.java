@@ -2,6 +2,8 @@ package com.example.citate;
 
 //import com.example.citate.databinding.MainBinding;
 
+//import static GetJson.getAllQuotes;
+
 
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -38,7 +40,7 @@ public class MainActivity2 extends AppCompatActivity {
     String[] authors = {"Фалькон", "Булэйт", "Автор 1", "Автор 2"};
     String[] authors_desc = {"Лучший в мире дед.", "Сэ трэиць домнул колонел", "Бла-бла-бла-бла-бла", "Бла-бла-бла-бла-бла"};
     int[] authors_images = {R.drawable.test, R.drawable.anime, R.drawable.test, R.drawable.test};
-    final String fileName = "quotes";
+    final String fileName = "quotes_main";
     ArrayList<String[]> allQuotes = new ArrayList<String[]>();
     ArrayList<AuthorData> dataList = new ArrayList<AuthorData>();
 
@@ -53,7 +55,8 @@ public class MainActivity2 extends AppCompatActivity {
             return insets;
         });
 
-        allQuotes = getAllQuotes(fileName, authors);
+//        allQuotes = getAllQuotes(fileName, authors);
+        allQuotes = GetJson.getAllQuotes(getApplicationContext(), fileName, authors);
         for(int i = 0; i < allQuotes.size(); ++i) {
             Log.d("Author", authors[i]);
             for(int j = 0; j < allQuotes.get(i).length; ++j) {
@@ -98,7 +101,7 @@ public class MainActivity2 extends AppCompatActivity {
         });
     }
 
-    public int randInt(int min, int max) {
+    public static int randInt(int min, int max) {
         // Max exclusive, min inclusive
         Random rand = new Random();
         return rand.ints(min, max)
@@ -113,7 +116,7 @@ public class MainActivity2 extends AppCompatActivity {
 //                )
 //        );
 
-        InputStream jsonData = getApplicationContext().getResources().openRawResource(R.raw.quotes);
+        InputStream jsonData = getApplicationContext().getResources().openRawResource(R.raw.quotes_main);
 
         Reader reader = new InputStreamReader(jsonData);
         BufferedReader streamReader = new BufferedReader(reader);
