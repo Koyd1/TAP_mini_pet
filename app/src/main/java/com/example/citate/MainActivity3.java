@@ -40,7 +40,6 @@ public class MainActivity3 extends AppCompatActivity {
 
         spinner.setAdapter(adapter);
 
-
         ImageView image = findViewById(R.id.imageView);
         TextView quote = findViewById(R.id.textView);
         TextView authorName = findViewById(R.id.authorNameView);
@@ -56,7 +55,7 @@ public class MainActivity3 extends AppCompatActivity {
             String[] quotesArr = intent.getStringArrayExtra("authorQuotes");
             if (quotesArr != null) {
                 quote.setText(quotesArr[0]);
-                quoteNum.setText("Цитата №" + 0);
+                quoteNum.setText("Цитата №" + 1);
 
                 // Next quote
                 arrowRight.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +66,7 @@ public class MainActivity3 extends AppCompatActivity {
                             currQuote = 0;
                         }
                         quote.setText(quotesArr[currQuote]);
-                        quoteNum.setText("Цитата №" + currQuote);
+                        quoteNum.setText("Цитата №" + (currQuote + 1));
                     }
                 });
 
@@ -78,7 +77,7 @@ public class MainActivity3 extends AppCompatActivity {
                         if (currQuote > 0) {
                             currQuote--;
                             quote.setText(quotesArr[currQuote]);
-                            quoteNum.setText("Цитата №" + currQuote);
+                            quoteNum.setText("Цитата №" + (currQuote + 1));
                         }
 
                     }
