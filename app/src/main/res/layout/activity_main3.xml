@@ -6,12 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="48sp"
-        android:id="@+id/action_bar_spinner"
-        android:layout_margin="16dp"
+<!--    <Spinner-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="48sp"-->
+<!--        android:id="@+id/action_bar_spinner"-->
+<!--        android:layout_margin="16dp"-->
+<!--        />-->
+    <ImageView
+        android:id="@+id/goBackButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/arrow_left"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
         />
+
     <com.google.android.material.imageview.ShapeableImageView
         android:layout_width="200sp"
         android:layout_height="200sp"

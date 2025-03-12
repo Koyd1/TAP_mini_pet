@@ -35,7 +35,6 @@ import org.json.JSONArray;
 
 public class MainActivity2 extends AppCompatActivity {
 
-
     String[] authors = {"Фалькон", "Булэйт", "Автор 1", "Автор 2"};
     String[] authors_desc = {"Лучший в мире дед.", "Сэ трэиць домнул колонел", "Бла-бла-бла-бла-бла", "Бла-бла-бла-бла-бла"};
     int[] authors_images = {R.drawable.test, R.drawable.anime, R.drawable.test, R.drawable.test};

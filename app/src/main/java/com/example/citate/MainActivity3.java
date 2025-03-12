@@ -32,14 +32,6 @@ public class MainActivity3 extends AppCompatActivity {
             return insets;
         });
 
-        String[] arr = {"Волк", "Обезьяна", "Собака"};
-
-        Spinner spinner = findViewById(R.id.action_bar_spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, arr);
-        adapter.setDropDownViewResource(R.layout.mylayout);
-
-        spinner.setAdapter(adapter);
-
         ImageView image = findViewById(R.id.imageView);
         TextView quote = findViewById(R.id.textView);
         TextView authorName = findViewById(R.id.authorNameView);
@@ -85,8 +77,15 @@ public class MainActivity3 extends AppCompatActivity {
             }
             else
                 quote.setText("Цитаты не найдены.");
-
         }
+
+        ImageView goBackButton = findViewById(R.id.goBackButton);
+        goBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
     }
 }
