@@ -44,12 +44,24 @@
         />
 
     <TextView
+        android:id="@+id/quoteTagsView"
+        android:layout_width="300dp"
+        android:layout_height="20dp"
+        android:layout_alignBottom="@id/authorNameView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-25dp"
+        android:text="Quote Tags"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        />
+
+    <TextView
         android:id="@+id/textView"
         android:layout_width="300sp"
         android:layout_height="200sp"
-        android:layout_alignBottom="@id/authorNameView"
+        android:layout_alignBottom="@id/quoteTagsView"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="-200dp"
+        android:layout_marginBottom="-210dp"
         android:text="Не важно кто ты нахуй, важно что ты нахуй.." />
 
     <TextView

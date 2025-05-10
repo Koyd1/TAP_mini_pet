@@ -12,14 +12,59 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
 
-
+import java.util.HashMap;
 
 public class GetJson {
 
-    public static ArrayList<String[]> getAllQuotes(Context context, String fileName, String[] authorsNames) {
+    public static ArrayList<QuoteData[]> getAllQuotes(Context context, String fileName, String[] authorsNames) {
+
+        ArrayList<QuoteData[]> allQuotes = new ArrayList<QuoteData[]>();
+        InputStream jsonData = context.getResources().openRawResource(R.raw.quotes_main);
+
+        Reader reader = new InputStreamReader(jsonData);
+        BufferedReader streamReader = new BufferedReader(reader);
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for(String authorName : authorsNames) {
+            String inputStr;
+            try {
+                while ((inputStr = streamReader.readLine()) != null) {
+                    stringBuilder.append(inputStr);
+                }
+
+                JSONObject json = new JSONObject(stringBuilder.toString());
+                JSONArray resArrJson = json.getJSONArray(authorName);
+                int len = resArrJson.length();
+                QuoteData[] resArr = new QuoteData[len];
+
+                // JSONArray to String[]
+                for (int i = 0; i < len; ++i) {
+                    JSONObject quote = resArrJson.getJSONObject(i);
+                    String quoteText = quote.getString("quote");
+                    JSONArray quoteTags = quote.getJSONArray("tags");
+                    int quoteTagsLen = quoteTags.length();
+                    String[] quoteTagsArr = new String[quoteTagsLen];
+                    for(int j = 0; j < quoteTagsLen; ++j) {
+                        quoteTagsArr[j] = quoteTags.getString(j);
+                    }
+                    QuoteData quoteData = new QuoteData(quoteText, quoteTagsArr, authorName);
+                    resArr[i] = quoteData;
+                }
+                allQuotes.add(resArr);
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+                Log.d("Error", e.toString());
+            }
+        }
+
+        return allQuotes;
+    }
+
+    public static ArrayList<String[]> getAllStartQuotes(Context context, String fileName, String[] authorsNames) {
 
         ArrayList<String[]> allQuotes = new ArrayList<String[]>();
-        InputStream jsonData = context.getResources().openRawResource(R.raw.quotes_main);
+        InputStream jsonData = context.getResources().openRawResource(R.raw.quotes_start);
 
         Reader reader = new InputStreamReader(jsonData);
         BufferedReader streamReader = new BufferedReader(reader);

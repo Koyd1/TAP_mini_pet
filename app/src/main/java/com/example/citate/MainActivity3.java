@@ -34,6 +34,7 @@ public class MainActivity3 extends AppCompatActivity {
 
         ImageView image = findViewById(R.id.imageView);
         TextView quote = findViewById(R.id.textView);
+        TextView quoteTags = findViewById(R.id.quoteTagsView);
         TextView authorName = findViewById(R.id.authorNameView);
         TextView quoteNum = findViewById(R.id.quoteNumView);
 
@@ -44,20 +45,34 @@ public class MainActivity3 extends AppCompatActivity {
         if(intent != null) {
             image.setImageResource(intent.getIntExtra("authorImage", R.drawable.arrow_left));
             authorName.setText(intent.getStringExtra("authorName"));
-            String[] quotesArr = intent.getStringArrayExtra("authorQuotes");
+            QuoteData[] quotesArr = (QuoteData[]) intent.getSerializableExtra("authorQuotes");
+            String tags = "";
+//            String[] quotesArr = intent.getStringArrayExtra("authorQuotes");
             if (quotesArr != null) {
-                quote.setText(quotesArr[0]);
+                quote.setText(quotesArr[0].quoteText);
+                for(int i = 0; i < quotesArr[0].quoteTags.length; ++i) {
+                    tags += quotesArr[0].quoteTags[i];
+                    tags += " ";
+                }
+                quoteTags.setText(tags);
                 quoteNum.setText("Цитата №" + 1);
 
                 // Next quote
                 arrowRight.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        String tags = "";
                         currQuote++;
                         if (currQuote == quotesArr.length) {
                             currQuote = 0;
                         }
-                        quote.setText(quotesArr[currQuote]);
+
+                        quote.setText(quotesArr[currQuote].quoteText);
+                        for(int i = 0; i < quotesArr[currQuote].quoteTags.length; ++i) {
+                            tags += quotesArr[currQuote].quoteTags[i];
+                            tags += " ";
+                        }
+                        quoteTags.setText(tags);
                         quoteNum.setText("Цитата №" + (currQuote + 1));
                     }
                 });
@@ -66,10 +81,19 @@ public class MainActivity3 extends AppCompatActivity {
                 arrowLeft.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        String tags = "";
                         if (currQuote > 0) {
                             currQuote--;
-                            quote.setText(quotesArr[currQuote]);
+                            quote.setText(quotesArr[currQuote].quoteText);
+                            for(int i = 0; i < quotesArr[currQuote].quoteTags.length; ++i) {
+                                tags += quotesArr[currQuote].quoteTags[i];
+                                tags += " ";
+                            }
+                            quoteTags.setText(tags);
                             quoteNum.setText("Цитата №" + (currQuote + 1));
+
+//                            quote.setText(quotesArr[currQuote]);
+//                            quoteNum.setText("Цитата №" + (currQuote + 1));
                         }
 
                     }

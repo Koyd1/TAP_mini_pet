@@ -10,10 +10,35 @@
     <TextView
         android:id="@+id/choose_author_text"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="50dp"
         android:text="Выберите автора"
         android:textSize="20sp"
         android:textAlignment="center"/>
+
+    <RelativeLayout
+        android:id = "@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignBottom="@id/choose_author_text"
+        android:layout_marginBottom="-70dp">
+
+        <EditText
+            android:id="@+id/searchQuery"
+            android:layout_width="340dp"
+            android:layout_height="match_parent"
+            android:text="Искать цитаты.."
+            android:layout_marginStart="10dp"
+            />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/searchButton"
+            app:shapeAppearanceOverlay= "@style/roundedImage"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@id/searchQuery"
+            android:src="@drawable/search_button"
+            />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/random_button"
@@ -21,7 +46,8 @@
         android:layout_height="75dp"
         android:text="Случайный автор"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_alignBottom="@id/relativeLayout"
+        android:layout_marginBottom="-80dp"
         />
 
     <ListView
@@ -32,7 +58,7 @@
         android:dividerHeight="10sp"
         android:scrollbars="vertical"
 
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="220dp"
         tools:listitem="@layout/list_item"
 
         />

@@ -7,7 +7,7 @@ package com.example.citate;
 
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-//import java.util.HashMap;
+import java.util.HashMap;
 //
 //import java.io.File;
 //import java.io.FileInputStream;
@@ -19,6 +19,8 @@ import java.util.Random;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -32,6 +34,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+
+
 import org.json.JSONObject;
 import org.json.JSONArray;
 
@@ -41,7 +45,7 @@ public class MainActivity2 extends AppCompatActivity {
     String[] authors_desc = {"Лучший в мире дед.", "Сэ трэиць домнул колонел", "Бла-бла-бла-бла-бла", "Бла-бла-бла-бла-бла"};
     int[] authors_images = {R.drawable.test, R.drawable.anime, R.drawable.test, R.drawable.test};
     final String fileName = "quotes_main";
-    ArrayList<String[]> allQuotes = new ArrayList<String[]>();
+    ArrayList<QuoteData[]> allQuotes = new ArrayList<QuoteData[]>();
     ArrayList<AuthorData> dataList = new ArrayList<AuthorData>();
 
     @Override
@@ -57,12 +61,13 @@ public class MainActivity2 extends AppCompatActivity {
 
 //        allQuotes = getAllQuotes(fileName, authors);
         allQuotes = GetJson.getAllQuotes(getApplicationContext(), fileName, authors);
-        for(int i = 0; i < allQuotes.size(); ++i) {
-            Log.d("Author", authors[i]);
-            for(int j = 0; j < allQuotes.get(i).length; ++j) {
-                Log.d("Quote" + j, allQuotes.get(i)[j]);
-            }
-        }
+//        for(int i = 0; i < allQuotes.size(); ++i) {
+//            Log.d("Author", authors[i]);
+//            for(int j = 0; j < allQuotes.get(i).length; ++j) {
+//                Log.d("Quote" + j, allQuotes.get(i)[j]);
+//            }
+//        }
+
 
         for (int i = 0; i < authors.length; ++i) {
             dataList.add(new AuthorData(authors[i], authors_desc[i], authors_images[i]));
@@ -99,6 +104,21 @@ public class MainActivity2 extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ImageView searchButton = findViewById(R.id.searchButton);
+        EditText query = findViewById(R.id.searchQuery);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SearchQuoteActivity.class);
+                intent.putExtra("authorName", authors);
+                intent.putExtra("authorDesc", authors_desc);
+                intent.putExtra("authorImage", authors_images);
+                intent.putExtra("allQuotes", allQuotes);
+                intent.putExtra("query", String.valueOf(query.getText()));
+                startActivity(intent);
+            }
+        });
     }
 
     public static int randInt(int min, int max) {
@@ -109,43 +129,5 @@ public class MainActivity2 extends AppCompatActivity {
                 .getAsInt();
     }
 
-    public ArrayList<String[]> getAllQuotes(String fileName, String[] authorsNames) {
-//        InputStream jsonData = getApplicationContext().getResources().openRawResource(
-//                getApplicationContext().getResources().getIdentifier(
-//                        fileName, "raw", getApplicationContext().getPackageName()
-//                )
-//        );
 
-        InputStream jsonData = getApplicationContext().getResources().openRawResource(R.raw.quotes_main);
-
-        Reader reader = new InputStreamReader(jsonData);
-        BufferedReader streamReader = new BufferedReader(reader);
-        StringBuilder stringBuilder = new StringBuilder();
-
-        for(String authorName : authorsNames) {
-            String inputStr;
-            try {
-                while ((inputStr = streamReader.readLine()) != null) {
-                    stringBuilder.append(inputStr);
-                }
-
-                JSONObject json = new JSONObject(stringBuilder.toString());
-                JSONArray resArrJson = json.getJSONArray(authorName);
-                int len = resArrJson.length();
-                String[] resArr = new String[len];
-
-                // JSONArray to String[]
-                for (int i = 0; i < len; ++i) {
-                    resArr[i] = resArrJson.getString(i);
-                }
-                allQuotes.add(resArr);
-            }
-            catch(Exception e) {
-                e.printStackTrace();
-                Log.d("Error", e.toString());
-            }
-        }
-
-        return allQuotes;
-    }
 }

@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        allQuotes = GetJson.getAllQuotes(getApplicationContext(), fileName, authors);
+        allQuotes = GetJson.getAllStartQuotes(getApplicationContext(), fileName, authors);
 
         // Set authors image, name and quote
         int len = authors.length;
