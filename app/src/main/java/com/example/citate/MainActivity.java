@@ -17,6 +17,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+// LAB1 : Классы, объекты и конструкторы
+// LAB2 : Наследование и композиция
+// LAB3 : Перезаписывание и перегрузка методов
 public class MainActivity extends AppCompatActivity {
 
     String[] authors = {"Фалькон", "Булэйт", "Автор 1", "Автор 2"};

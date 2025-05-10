@@ -1,5 +1,6 @@
 package com.example.citate;
 
+// LAB1 : Классы, объекты и конструкторы
 public class AuthorData {
     public String name;
     public String desc;

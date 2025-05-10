@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 
 import java.util.zip.Inflater;
 
+// LAB2 : Наследование и композиция
 public class AuthorsAdapter extends ArrayAdapter<AuthorData> {
     public AuthorsAdapter(@NonNull Context context, ArrayList<AuthorData> arr ) {
         super(context, R.layout.list_item, arr);
