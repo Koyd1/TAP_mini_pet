@@ -5,6 +5,7 @@ package com.example.citate;
 //import static GetJson.getAllQuotes;
 
 
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,15 +45,15 @@ import org.json.JSONArray;
 // LAB3 : Перезаписывание и перегрузка методов
 public class MainActivity2 extends AppCompatActivity {
 
-    String[] authors = {"Фалькон", "Булэйт", "Автор 1", "Автор 2"};
-    String[] authors_desc = {"Лучший в мире дед.", "Сэ трэиць домнул колонел", "Бла-бла-бла-бла-бла", "Бла-бла-бла-бла-бла"};
-    int[] authors_images = {R.drawable.test, R.drawable.anime, R.drawable.test, R.drawable.test};
+    String[] authors = {"Стив Джобс", "Альберт Эйнштейн", "Илон Маск", "Смешные Цитаты", "Цитаты из Warcraft3", "Фалькон", "Булэйт"};
+    String[] authors_desc = {"Бывший управляющий директора Apple", "Физик-теоретик и ученый", "Предприниматель и инженер", "Самые смешные цитаты на любые темы", "Цитаты из знаменитой игры", "Лучший в мире дед.", "Сэ трэиць домнул колонел"};
+    int[] authors_images = {R.drawable.steve_jobs, R.drawable.albert, R.drawable.elon, R.drawable.funny, R.drawable.warcraft, R.drawable.test, R.drawable.anime};
     final String fileName = "quotes_main";
     ArrayList<QuoteData[]> allQuotes = new ArrayList<QuoteData[]>();
     ArrayList<AuthorData> dataList = new ArrayList<AuthorData>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) throws RuntimeException {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main2);
@@ -62,14 +63,12 @@ public class MainActivity2 extends AppCompatActivity {
             return insets;
         });
 
-//        allQuotes = getAllQuotes(fileName, authors);
-        allQuotes = GetJson.getAllQuotes(getApplicationContext(), fileName, authors);
-//        for(int i = 0; i < allQuotes.size(); ++i) {
-//            Log.d("Author", authors[i]);
-//            for(int j = 0; j < allQuotes.get(i).length; ++j) {
-//                Log.d("Quote" + j, allQuotes.get(i)[j]);
-//            }
-//        }
+        try {
+            allQuotes = GetJson.getAllQuotes(getApplicationContext(), fileName, authors);
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
+        }
 
 
         for (int i = 0; i < authors.length; ++i) {

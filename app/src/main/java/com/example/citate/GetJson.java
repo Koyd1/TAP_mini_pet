@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -16,7 +17,7 @@ import java.util.HashMap;
 
 public class GetJson {
 
-    public static ArrayList<QuoteData[]> getAllQuotes(Context context, String fileName, String[] authorsNames) {
+    public static ArrayList<QuoteData[]> getAllQuotes(Context context, String fileName, String[] authorsNames) throws IOException {
 
         ArrayList<QuoteData[]> allQuotes = new ArrayList<QuoteData[]>();
         InputStream jsonData = context.getResources().openRawResource(R.raw.quotes_main);
@@ -25,9 +26,10 @@ public class GetJson {
         BufferedReader streamReader = new BufferedReader(reader);
         StringBuilder stringBuilder = new StringBuilder();
 
-        for(String authorName : authorsNames) {
-            String inputStr;
-            try {
+        try {
+            for(String authorName : authorsNames) {
+                String inputStr;
+
                 while ((inputStr = streamReader.readLine()) != null) {
                     stringBuilder.append(inputStr);
                 }
@@ -52,16 +54,21 @@ public class GetJson {
                 }
                 allQuotes.add(resArr);
             }
-            catch(Exception e) {
-                e.printStackTrace();
-                Log.d("Error", e.toString());
-            }
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+        }
+        finally {
+            streamReader.close();
+            reader.close();
+            jsonData.close();
         }
 
         return allQuotes;
     }
 
-    public static ArrayList<String[]> getAllStartQuotes(Context context, String fileName, String[] authorsNames) {
+    public static ArrayList<String[]> getAllStartQuotes(Context context, String fileName, String[] authorsNames) throws IOException {
 
         ArrayList<String[]> allQuotes = new ArrayList<String[]>();
         InputStream jsonData = context.getResources().openRawResource(R.raw.quotes_start);
@@ -70,9 +77,10 @@ public class GetJson {
         BufferedReader streamReader = new BufferedReader(reader);
         StringBuilder stringBuilder = new StringBuilder();
 
-        for(String authorName : authorsNames) {
-            String inputStr;
-            try {
+        try {
+            for(String authorName : authorsNames) {
+                String inputStr;
+
                 while ((inputStr = streamReader.readLine()) != null) {
                     stringBuilder.append(inputStr);
                 }
@@ -88,10 +96,16 @@ public class GetJson {
                 }
                 allQuotes.add(resArr);
             }
-            catch(Exception e) {
-                e.printStackTrace();
-                Log.d("Error", e.toString());
-            }
+
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+        }
+        finally {
+            streamReader.close();
+            reader.close();
+            jsonData.close();
         }
 
         return allQuotes;

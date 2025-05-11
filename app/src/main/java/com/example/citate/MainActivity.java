@@ -1,5 +1,6 @@
 package com.example.citate;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import android.content.Intent;
@@ -22,9 +23,9 @@ import androidx.core.view.WindowInsetsCompat;
 // LAB3 : Перезаписывание и перегрузка методов
 public class MainActivity extends AppCompatActivity {
 
-    String[] authors = {"Фалькон", "Булэйт", "Автор 1", "Автор 2"};
-    String[] authors_desc = {"Лучший в мире дед.", "Сэ трэиць домнул колонел", "Бла-бла-бла-бла-бла", "Бла-бла-бла-бла-бла"};
-    int[] authors_images = {R.drawable.test, R.drawable.anime, R.drawable.test, R.drawable.test};
+    String[] authors = {"Стив Джобс", "Альберт Эйнштейн", "Илон Маск", "Смешные Цитаты", "Цитаты из Warcraft3"};
+    int[] authors_images = {R.drawable.steve_jobs, R.drawable.albert, R.drawable.elon, R.drawable.funny, R.drawable.warcraft};
+
     final String fileName = "quotes_start";
     ArrayList<String[]> allQuotes = new ArrayList<String[]>();
 
@@ -41,7 +42,13 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        allQuotes = GetJson.getAllStartQuotes(getApplicationContext(), fileName, authors);
+        try {
+            allQuotes = GetJson.getAllStartQuotes(getApplicationContext(), fileName, authors);
+        }
+        catch(IOException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+
 
         // Set authors image, name and quote
         int len = authors.length;
